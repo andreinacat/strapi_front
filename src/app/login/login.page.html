@@ -1,9 +1,37 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content>
+ 
+<form #form="ngForm" (ngSubmit)="login(form)">
+    
+<ion-card>
+  <img src="./assets/waterfall.jpg" />
+  <ion-row justify-content-center>
+    <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+      <div>
+        
+      </div>
+      <div padding>
+        <ion-item>
+          <ion-input name="usuario" type="text" placeholder="nombre de usuario" ngModel required>  
+          </ion-input>
+        </ion-item>
 
-</ion-content>
+        <ion-item>
+          <ion-input name="contrasenia" type="password" placeholder="Contraseña" ngModel required></ion-input>
+        </ion-item>
+      </div>
+
+      <div padding>
+        <ion-button color="secondary"  type="submit" size="large" expand="block">Login</ion-button>
+      </div>
+      
+    </ion-col>
+  </ion-row>
+</ion-card>
+<ion-item class="ion-text-center" >
+  <ion-router-link href="#">Olvidaste tu contraseña?</ion-router-link>
+</ion-item>
+
+</form>
+</ion-content> 
+
