@@ -15,6 +15,13 @@ export class ChaquetasPage implements OnInit {
   ngOnInit() {
 	this.productos = this.servicioProductos.getChaquetas();
   }
+
+  // Refrescar la nueva lista, una vez borrado algun elemento (sobre cargar la lsta):
+  ionViewWillEnter(){
+    this.productos = this.servicioProductos.getChaquetas();
+  }
+
+  // Dirigir al html de Agregar-Item
   redireccionAgregar(){
     this.ruta.navigate(['/agregar-item']);
 

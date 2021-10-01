@@ -17,12 +17,19 @@
 
         <ion-item>
           <ion-input class="ion-text-center" name="contrasenia" type="password" placeholder="Contraseña" ngModel required></ion-input>
-        </ion-item>
+        </ion-item>        
+
       </div>
 
       <div padding>
         <ion-button color="secondary"  type="submit" size="large" expand="block">Iniciar Sesión</ion-button>
       </div>
+
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-router-link  color="tertiary" href="#" class="fuente">¿Olvidaste tu contraseña?</ion-router-link>
+        </ion-col>
+      </ion-row>
       
     </ion-col>
   </ion-row>
@@ -30,7 +37,5 @@
 
 
 </form>
-<ion-item>
-  <ion-router-link href="#"  align-self-center >¿Olvidaste tu contraseña?</ion-router-link>
-</ion-item>
+
 </ion-content> 
