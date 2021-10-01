@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'detalle-chaquetas',
     loadChildren: () => import('./detalle-chaquetas/detalle-chaquetas.module').then( m => m.DetalleChaquetasPageModule)
-  }
+  },
 ];
 
 @NgModule({

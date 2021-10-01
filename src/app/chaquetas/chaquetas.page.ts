@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChaquetasService } from './chaquetas.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chaquetas',
@@ -9,10 +10,15 @@ import { ChaquetasService } from './chaquetas.service';
 export class ChaquetasPage implements OnInit {
   private productos = []
 
-  constructor(private servicioProductos: ChaquetasService) { }
+  constructor(private servicioProductos: ChaquetasService , private ruta: Router) { }
 
   ngOnInit() {
 	this.productos = this.servicioProductos.getChaquetas();
   }
+  redireccionAgregar(){
+    this.ruta.navigate(['/agregar-item']);
+
+  }
+ 
 
 }

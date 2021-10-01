@@ -26,6 +26,7 @@ const routes: Routes = [
         path: "chaqID",
         loadChildren: () => import('./chaquetas/detalle-chaquetas/detalle-chaquetas.module').then( m => m.DetalleChaquetasPageModule)
       }
+      
     ]
     
   },
@@ -37,6 +38,10 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
+  {
+    path: 'agregar-item',
+    loadChildren: () => import('./agregar-item/agregar-item.module').then( m => m.AgregarItemPageModule)
+  }
 ];
 
 
