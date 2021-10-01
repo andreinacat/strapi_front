@@ -1,4 +1,3 @@
-
 <ion-content>
  
 <form #form="ngForm" (ngSubmit)="login(form)">
@@ -12,26 +11,25 @@
       </div>
       <div padding>
         <ion-item>
-          <ion-input name="usuario" type="text" placeholder="nombre de usuario" ngModel required>  
+          <ion-input class="ion-text-center" name="usuario" type="text" placeholder="Nombre de Usuario" ngModel required>  
           </ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-input name="contrasenia" type="password" placeholder="Contraseña" ngModel required></ion-input>
+          <ion-input class="ion-text-center" name="contrasenia" type="password" placeholder="Contraseña" ngModel required></ion-input>
         </ion-item>
       </div>
 
       <div padding>
-        <ion-button color="secondary"  type="submit" size="large" expand="block">Login</ion-button>
+        <ion-button color="secondary"  type="submit" size="large" expand="block">Iniciar Sesión</ion-button>
       </div>
       
     </ion-col>
   </ion-row>
 </ion-card>
-<ion-item class="ion-text-center" >
-  <ion-router-link href="#">Olvidaste tu contraseña?</ion-router-link>
+<ion-item>
+  <ion-router-link href="#" >¿Olvidaste tu contraseña?</ion-router-link>
 </ion-item>
 
 </form>
 </ion-content> 
-

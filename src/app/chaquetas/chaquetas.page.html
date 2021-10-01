@@ -1,8 +1,9 @@
 <ion-header>
-  <ion-toolbar color="dark"> 
+  <ion-toolbar color="secondary"> 
     <ion-title class="ion-text-center">Chaquetas</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let c of productos" [routerLink]="['/chaquetas' , c.id]">

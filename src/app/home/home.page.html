@@ -1,20 +1,69 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <!-- Encabezado -->
+  <ion-toolbar color="secondary">
+    <ion-title class="ion-text-center">TRES PASS CHILE ®</ion-title>
+    <ion-title class="ion-text-center">¡Bienvenido {{usuario}}!</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  
+  <!-- Carrusel de Imagenes QUE NO ESTA FUNCIONANDO AL 100% -->
+  <ion-slides pager="true">
+    <ion-slide>
+      <img src="https://boundaryoutlet.com/wp-content/uploads/2019/08/brand_trespass.jpg" />
+    <!-- ALGUNAS IMAGENES ALTERNATIVAS QUE PODRIAN LLEGAR A SERVIRNOS, SI LOGRAMOS HACER EL CARRUSEL
+      <img src="https://www.moorescoleraine.com/media/1729/20wk11-advice-ski-x1.jpg" />
+      <img src="https://www.moorescoleraine.com/media/1736/womens-cat-promo-270919-x1.jpg" />
+      <img src="https://www.visit-chester.co.uk/wp-content/uploads/2018/10/Trespass.jpg" /> 
+    -->
+    </ion-slide> 
+  </ion-slides> 
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Equipamiento Outdoor</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Todo el equipamiento de montaña que necesitas para tu viaje de ensueño.
+      <br>   <br/>
+      <img src="https://www.moorescoleraine.com/media/1736/womens-cat-promo-270919-x1.jpg" />
+      <br>   <br/>
+      Ropa términa e impermeable de mujer y hombre. Accesorios de camping y montañismo.
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
+
+
+<ion-tabs>
+  <!-- Tabs de Menú Fijo -->
+  <ion-tab-bar slot="bottom" color="secondary"> 
+    <ion-tab-button tab="tab1">
+      <ion-icon name="woman"></ion-icon>
+      <ion-label>Mujer</ion-label>
+    </ion-tab-button>
+ 
+    <!-- Botón que deberá dirigirnos al html de Chaquetas -->
+    <ion-tab-button tab="tab2">
+      <ion-icon name="man"></ion-icon>
+      <ion-label>Hombre</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="footsteps"></ion-icon>
+      <ion-label>Calzado</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab4">
+      <ion-icon name="prism"></ion-icon>
+      <ion-label>Equipamiento</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab5">
+      <ion-icon name="ellipsis-horizontal"></ion-icon>
+      <ion-label>Más</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

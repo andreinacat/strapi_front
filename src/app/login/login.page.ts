@@ -12,13 +12,12 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  // Método que recibe la Información del Formulario:
   login(form){
-  
   var usuario = form.value["usuario"];
   var contrasenia = form.value["contrasenia"];
 
   if(usuario == "admin" && contrasenia == "123"){
-
     localStorage.setItem("datos",usuario);
      this.router.navigate(['/home'])
      console.log(form.value)
