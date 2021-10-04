@@ -51,7 +51,7 @@
       <!-- Comentarios -->
       <ion-row>
         <ion-col>
-          <ion-list *ngIf=" datos.descripcion && datos.descripcion.length >0; else sinDescripcion">
+          <ion-list *ngIf=" datos.descripcion && datos.descripcion.length > 0; else sinDescripcion ">
               <ion-item *ngFor="let desc of datos.descripcion">
                 {{desc}}
               </ion-item>

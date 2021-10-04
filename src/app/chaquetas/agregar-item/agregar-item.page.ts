@@ -26,7 +26,14 @@ export class AgregarItemPage implements OnInit {
 
     var lista =[]
 
-    lista.push(descripcion.value)
+    if(descripcion.value !== ""){
+
+      lista.push(descripcion.value)
+  
+    }else{
+      
+      lista = null;
+    }
 
     this.chaquetaService.addChaquetas(nombre.value, imagenURL.value, talla.value, precio.value, lista);
     this.router.navigate(['/chaquetas']);
