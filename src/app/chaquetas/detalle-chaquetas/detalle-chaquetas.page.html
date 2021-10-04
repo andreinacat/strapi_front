@@ -38,13 +38,13 @@
 
       <ion-row>
         <ion-col>
-          <h1 class="ion-text-center">{{datos.talla}}</h1>
+          <h1 class="ion-text-center">Talla : {{datos.talla}}</h1>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col>
-          <h1 class="ion-text-center">{{datos.precio}}</h1>
+          <h1 class="ion-text-center">Precio : {{datos.precio}}</h1>
         </ion-col>
       </ion-row>
   
@@ -53,7 +53,7 @@
         <ion-col>
           <ion-list *ngIf=" datos.descripcion && datos.descripcion.length > 0; else sinDescripcion ">
               <ion-item *ngFor="let desc of datos.descripcion">
-                {{desc}}
+                <h1>{{desc}}</h1>
               </ion-item>
             
           </ion-list>
