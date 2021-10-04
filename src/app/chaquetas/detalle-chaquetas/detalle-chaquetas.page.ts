@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // Importamos una Librería:
 import { ActivatedRoute, Router } from '@angular/router';
-import { Producto } from '../chaquetas,model';
+import { Producto } from '../chaquetas.model';
 // Importamos al Servicio, para conectar nuestro Servicio:
 import { ChaquetasService } from '../chaquetas.service';
 
@@ -29,11 +29,13 @@ export class DetalleChaquetasPage implements OnInit {
       this.datos = this.chaquetasServicio.getChaquetasById(valor)
       console.log(this.datos)
 
+
+    
      } )
   }
 
   // Método Eliminar:
-  eliminar(){
+  eliminarChaqueta(){
     console.log("eliminado");
     this.chaquetasServicio.deleteChaquetas(this.datos.id)
     // Luego redireccionamos a la página de productos:

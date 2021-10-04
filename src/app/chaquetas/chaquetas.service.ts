@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ChaquetasService {
-  private productos = [
+
+    private productos = [
   	{
     	id : '1',
     	nombre : 'Jacket 1',
@@ -48,17 +51,18 @@ export class ChaquetasService {
   }
 
   // Agregar un Producto:
-  addChaquetas(nom : string, imgURL : string, tal: string, pre: number, desc: string){
-    this.productos.push({
+  addChaquetas(nombre : string, imagenURL : string, talla: string, precio: number, descripcion: string[]){
+    this.productos.push(
+      {
       // Conseguimos el largo total de la lista y le sumamos 1 más. Luego parseamos a String el Id.
-      id : String[this.productos.length + 1],
-      nombre : nom,
-      imagenURL : imgURL,
-      talla : tal,
-      precio : pre,
-      descripcion: []
+      id : this.productos.length + 1 + "",
+      nombre,
+      imagenURL,
+      talla,
+      precio,
+      descripcion
     }
-  )
+    )
   }
 
   // Eliminar un Producto:

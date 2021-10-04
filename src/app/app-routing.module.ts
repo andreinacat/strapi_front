@@ -32,8 +32,8 @@ const routes: Routes = [
   },
   {
     path: 'agregar-item',
-    loadChildren: () => import('./agregar-item/agregar-item.module').then( m => m.AgregarItemPageModule)
-  }
+    loadChildren: () => import('./chaquetas/agregar-item/agregar-item.module').then( m => m.AgregarItemPageModule)
+  },
 ];
 
 

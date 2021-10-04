@@ -1,9 +1,22 @@
 <ion-header>
   <ion-toolbar class="ion-text-center" color="secondary">
+
+
     <ion-buttons slot="start"> 
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>{{datos.nombre}}</ion-title>
+
+    
+<!-- boton borrar -->
+
+<ion-buttons slot="end">
+
+  <ion-button (click)="eliminarChaqueta()">
+    <ion-icon name="trash-outline"></ion-icon>
+  </ion-button>
+</ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 <!-- agregar el trash can para eliminar chaquetas-->
@@ -22,26 +35,37 @@
       </ion-row>
   
       <!-- Información del Producto, Nombre -->
+
       <ion-row>
         <ion-col>
-          <h1 class="ion-text-center">{{datos.nombre}}</h1>
+          <h1 class="ion-text-center">{{datos.talla}}</h1>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <h1 class="ion-text-center">{{datos.precio}}</h1>
         </ion-col>
       </ion-row>
   
       <!-- Comentarios -->
       <ion-row>
         <ion-col>
-          <ion-list *ngIf=" datos.descripcion && datos.descripcion.length > 0; else sinDescripcion">
-            <ion-item *ngFor="let desc of datos.descripcion">
-              {{desc}}
-            </ion-item>
+          <ion-list *ngIf=" datos.descripcion && datos.descripcion.length >0; else sinDescripcion">
+              <ion-item *ngFor="let desc of datos.descripcion">
+                {{desc}}
+              </ion-item>
+            
           </ion-list>
   
-          <!-- ngTemplate: Es un segmento de código que aparece bajo una condición -->
+          <!-- ngTemplate: Segmento de código que aparece bajo una condición -->
+
           <ng-template #sinDescripcion>
+
             <ion-text>
               <p class="ion-text-center">Producto Sin Descripción</p>  
             </ion-text>  
+
           </ng-template>
   
         </ion-col>
