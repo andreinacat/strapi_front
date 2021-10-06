@@ -22,7 +22,10 @@ export class HomePage implements OnInit {
   };
 
   constructor( private ruta : Router) { 
-     //Item object for Nature
+     
+     //Objeto que contiene los atributos booleanos para saber si esta al comienzo o al final de la 
+     //lista de imagenes, ademas de la lista de los nombres de los archivos colocados en assets 
+     // para otorgarselos por parametro dentro del html 
      this.sliderOne =
      {
        isBeginningSlide: true,
@@ -43,36 +46,39 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
   }
-
+// metodo no implementado para mover la slide arrastrandola a la siguiente
   slideNext(object, slideView) {
     slideView.slideNext(500).then(() => {
       this.checkIfNavDisabled(object, slideView);
     });
   }
 
-  //Move to previous slide
+  // metodo no implementado para mover la slide arrastrandola a la anterior
   slidePrev(object, slideView) {
     slideView.slidePrev(500).then(() => {
       this.checkIfNavDisabled(object, slideView);
     });;
   }
 
-  //Method called when slide is changed by drag or navigation
+  // metodo que se llama cada vez que una slide es cambiada por arrastar o navegar
   SlideDidChange(object, slideView) {
     this.checkIfNavDisabled(object, slideView);
   }
 
-  //Call methods to check if slide is first or last to enable disbale navigation  
+  
+  // llama a los metodos que chequean si la slide mostrada es la primera 
+  // o la ultima para desabilitar la navegacion  
   checkIfNavDisabled(object, slideView) {
     this.checkisBeginning(object, slideView);
     this.checkisEnd(object, slideView);
   }
-
+ // metodo que chequea si el slider muestra la primera diapositiva
   checkisBeginning(object, slideView) {
     slideView.isBeginning().then((istrue) => {
       object.isBeginningSlide = istrue;
     });
   }
+  // metodo que chequea si el slider muestra la ultima diapositiva
   checkisEnd(object, slideView) {
     slideView.isEnd().then((istrue) => {
       object.isEndSlide = istrue;

@@ -13,6 +13,9 @@
       
       <ion-col size="12">
         <!-- Carrusel de Imágenes -->
+        <!-- aqui se llama al metodo definido (SlideDidChange) en home.page.ts que se activa si 
+        la slide cambia, por medio de un ciclo for se entrega por parametro el id de la imagen 
+        que esta contenida dentro del objeto definido (sliderOne) en home.page.ts -->
         <ion-slides pager="true" [options]="slideOptions" #slideWithNav
           (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)">
           <ion-slide *ngFor="let s of sliderOne.slidesItems">
