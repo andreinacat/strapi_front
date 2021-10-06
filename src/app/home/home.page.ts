@@ -23,8 +23,8 @@ export class HomePage implements OnInit {
 
   constructor( private ruta : Router) { 
      
-     //Objeto que contiene los atributos booleanos para saber si esta al comienzo de la 
-     //lista de imagenes ademas de la lista de los nombres de los archivos colocados en assets 
+     //Objeto que contiene los atributos booleanos para saber si esta al comienzo o al final de la 
+     //lista de imagenes, ademas de la lista de los nombres de los archivos colocados en assets 
      // para otorgarselos por parametro dentro del html 
      this.sliderOne =
      {
@@ -60,7 +60,7 @@ export class HomePage implements OnInit {
     });;
   }
 
-  // metodo que se llama cuando una slide es cambiada por arrastar o navegar
+  // metodo que se llama cada vez que una slide es cambiada por arrastar o navegar
   SlideDidChange(object, slideView) {
     this.checkIfNavDisabled(object, slideView);
   }
