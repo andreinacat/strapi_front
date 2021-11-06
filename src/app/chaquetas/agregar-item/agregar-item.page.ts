@@ -8,35 +8,42 @@ import { ChaquetasService } from '../chaquetas.service';
   styleUrls: ['./agregar-item.page.scss'],
 })
 export class AgregarItemPage implements OnInit {
-  private productos = []
+  // Creación de una variable ANY para que el HTML pueda leer la información desde la API
+  productos: any = []
 
-  constructor(private router: Router, private servicioProductos: ChaquetasService,private chaquetaService: ChaquetasService) { }
+  constructor(private router: Router, private chaquetaService: ChaquetasService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   // Refrescar la nueva lista, una vez borrado algun elemento (sobre cargar la lsta):
   ionViewWillEnter(){
-    this.productos = this.servicioProductos.getChaquetas();
+    this.productos = this.chaquetaService.getChaquetas();
   }
 
   //Metodo para agregar
   agregarChaqueta(nombre, imagenURL, talla, precio, descripcion){
-
-
+    // Creación de una lista de comentaeios, un Array de tipo String
     var lista =[]
 
     if(descripcion.value !== ""){
-
+      // Captura y guardado (push) de los valores del o los comentarios
       lista.push(descripcion.value)
-  
     }else{
-      
+      // De lo contrario, dejamos la lista como nula
       lista = null;
     }
 
-    this.chaquetaService.addChaquetas(nombre.value, imagenURL.value, talla.value, precio.value, lista);
-    this.router.navigate(['/chaquetas']);
+    // Guardado de los valores de los datos dentro del método agregar
+    this.chaquetaService.addChaquetas(nombre.value, imagenURL.value, talla.value, precio.value, lista).subscribe(
+      (respuesta) => {
+        console.log(respuesta)
+        // Redireccionamos a la pagina de productos de TresPass
+        this.router.navigate(['/chaquetas']) 
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
   }
   
 }

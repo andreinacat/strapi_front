@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+// Importamos la clase del Servicio, para conectar el Modulo con el Servicio
 import { ChaquetasService } from './chaquetas.service';
+// Enrutador para redireccionar
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,23 +10,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./chaquetas.page.scss'],
 })
 export class ChaquetasPage implements OnInit {
-  private productos = []
+  // Creación de variable "productos" de tipo generica (ANY) para que pueda recibir cualquier tipo de dato.
+  private productos: any = []
 
   constructor(private servicioProductos: ChaquetasService , private ruta: Router) { }
 
   ngOnInit() {
-	this.productos = this.servicioProductos.getChaquetas();
+  // El objeto "productos" estará suscrito en linea a nuestra API en tiempo real
+	this.servicioProductos.getChaquetas().subscribe(
+    // Realización de 2 promesas para el método abarcando 2 posibilidades al llamar al método.
+    (resp) => { this.productos = resp },
+    (error) => { console.log(error) }
+  )
   }
 
-  // Refrescar la nueva lista, una vez borrado algun elemento (sobre cargar la lsta):
+  // Refrescamos la nueva lista, sobrecargamos la lista, suscritos a la API
   ionViewWillEnter(){
-    this.productos = this.servicioProductos.getChaquetas();
+    this.servicioProductos.getChaquetas().subscribe(
+      // Realizamos 2 promesas del método para abarcar las 2 posibilidades al llamar el metodo, lo bueno y el error
+      (resp) => { this.productos = resp },
+      (error) => { console.log(error) }
+    )
   }
 
   // Dirigir al html de Agregar-Item
   redireccionAgregar(){
     this.ruta.navigate(['/agregar-item']);
-
   }
  
 

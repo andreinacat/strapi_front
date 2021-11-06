@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'detalle-chaquetas',
     loadChildren: () => import('./detalle-chaquetas/detalle-chaquetas.module').then( m => m.DetalleChaquetasPageModule)
   },
+  {
+    path: 'agregar-item',
+    loadChildren: () => import('./agregar-item/agregar-item.module').then( m => m.AgregarItemPageModule)
+  },
 ];
 
 @NgModule({

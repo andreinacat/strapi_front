@@ -1,77 +1,49 @@
 import { Injectable } from '@angular/core';
-
-
+//Importamos nuestra conexión a la API de TresPass
+import { HttpClient} from '@angular/common/http'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChaquetasService {
 
-    private productos = [
-  	{
-    	id : '1',
-    	nombre : 'Jacket 1',
-    	imagenURL : 'https://images-na.ssl-images-amazon.com/images/I/814baEGolXL._AC_UL1500_.jpg',
-      talla: 'L',
-      precio: 65000,
-    	descripcion : ['Chaqueta Impermeable','Color azul con detalles amarillos']
-  	},
-  	{
-    	id : '2',
-    	nombre : 'Jacket 2',
-    	imagenURL : 'https://m.media-amazon.com/images/I/81Y9-zulqUL._AC_UY679_.jpg',
-      talla: 'M',
-      precio: 50000,
-    	descripcion : ['Chaqueta de Montaña','Color azul con detalles naranjos']
-  	},
-    {
-    	id : '3',
-    	nombre : 'Jacket 3',
-    	imagenURL : 'https://www.trespass.com/media/catalog/product/cache/ca61fa9d3bd05ef6fd63a3b37d6f22d9/o/s/oskar-majkcan20007-cbn-a.jpg',
-      talla: 'S',
-      precio: 55000,
-    	descripcion : ['Chaqueta de Plumas','Color negro/gris']
-  	},
-	]
+  // Creación de una variable generica tipo ANY (polimorfista) para nuestros productos.
+  private productos: any[]
 
-  constructor() { }
+  // Creamos una variable "http" de tipo HttpClient para llamar los datos de nuestra API
+  constructor(private http: HttpClient) { }
 
   // Creación de los Métodos del Mantenedor:
   // Listar todos los Productos:
   getChaquetas(){
-    return [...this.productos]
+    // Retornamos una lista de todos los productos desde nuestra API.
+    return this.http.get('http://localhost:1337/Productos');
   }
 
   // Buscar un producto especifico por su Identificador:
   getChaquetasById(chaquetaId: string){
-    return {... this.productos.find( serv => {
-      return serv.id === chaquetaId
-    })
-    }
+    // Se busca el elemento por Id y se retorna solo 1 objeto
+    return this.http.get('http://localhost:1337/Productos/' + chaquetaId);
   }
 
   // Agregar un Producto:
   addChaquetas(nombre : string, imagenURL : string, talla: string, precio: number, descripcion: string[]){
-    this.productos.push(
-      {
-      // Conseguimos el largo total de la lista y le sumamos 1 más. Luego parseamos a String el Id.
-      id : this.productos.length + 1 + "",
-      nombre,
-      imagenURL,
-      talla,
-      precio,
-      descripcion
+    var datos = {
+      "Nombre" : nombre,
+      "ImagenURL" : imagenURL,
+      "Talla" : talla,
+      "Precio" : precio,
+      "Descripcion" : descripcion[0]
     }
-    )
+    return this.http.post('http://localhost:1337/Productos/', datos);
   }
 
   // Eliminar un Producto:
   deleteChaquetas(chaquetaId : string){
-    // Le pasamos el id del producto por parametro para usarlo como comparacion, filtramos el objeto
-    // Creamos un nuevo arreglo sin el elemento que se ha filtrado, y se sobreescribe a la lista anterior
-    this.productos = this.productos.filter(serv => {
-      // Luego retorno a todos los elementos EXCEPTO del objeto encontrado por el id parametro de entrada
-      return serv.id !== chaquetaId
-      })
+    return this.http.delete('http://localhost:1337/Productos/' + chaquetaId);
   }    
+
+  getTallaById(tallaId: number){
+    return this.http.get('http://localhost:1337/tallas/' + tallaId);
+  }
 }

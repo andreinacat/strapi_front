@@ -1,17 +1,12 @@
 <ion-header>
   <ion-toolbar class="ion-text-center" color="secondary">
-
-
     <ion-buttons slot="start"> 
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{datos.nombre}}</ion-title>
+    <ion-title>{{producto.nombre}}</ion-title>
 
-    
 <!-- boton borrar -->
-
 <ion-buttons slot="end">
-
   <ion-button (click)="eliminarChaqueta()">
     <ion-icon name="trash-outline"></ion-icon>
   </ion-button>
@@ -19,9 +14,6 @@
 
   </ion-toolbar>
 </ion-header>
-<!-- agregar el trash can para eliminar chaquetas-->
-
-
 
 
 <ion-content>
@@ -31,42 +23,38 @@
       <ion-row>
         <ion-col>
           <!-- AGREGAR ETIQUETA CARD PARA QUE LA IMAGEN SE VEA MEJOR -->
-          <ion-img [src]="datos.imagenURL" ></ion-img>
+          <ion-img [src]="producto.imagenURL" ></ion-img>
         </ion-col>
       </ion-row>
   
       <!-- Información del Producto, Nombre -->
-
       <ion-row>
         <ion-col>
-          <h1 class="ion-text-center">Talla : {{datos.talla}}</h1>
+          <h1 class="ion-text-center">Talla : {{talla.nombre}}</h1>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col>
-          <h1 class="ion-text-center">Precio : {{datos.precio}}</h1>
+          <h1 class="ion-text-center">Precio : $ {{producto.precio}}</h1>
         </ion-col>
       </ion-row>
   
       <!-- Comentarios -->
       <ion-row>
         <ion-col>
-          <ion-list *ngIf=" datos.descripcion && datos.descripcion.length > 0; else sinDescripcion ">
-              <ion-item *ngFor="let desc of datos.descripcion">
+          <ion-list *ngIf=" producto.descripcion && producto.descripcion.length > 0; else sinDescripcion ">
+              <ion-item *ngFor="let desc of producto.descripcion">
                 <h1>{{desc}}</h1>
               </ion-item>
-            
           </ion-list>
   
           <!-- ngTemplate: Segmento de código que aparece bajo una condición -->
-
+          <!-- Cuando no hay una descripción asociada a una Chaqueta -->
           <ng-template #sinDescripcion>
-
             <ion-text>
               <p class="ion-text-center">Producto Sin Descripción</p>  
             </ion-text>  
-
           </ng-template>
   
         </ion-col>
