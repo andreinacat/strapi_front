@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChaquetasService } from '../chaquetas.service';
-import { TallaServService } from '../talla-serv.service';
+import { TallaServService } from '../talla/talla-serv.service';
 
 @Component({
   selector: 'app-agregar-item',

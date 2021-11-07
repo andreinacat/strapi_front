@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChaquetasService } from '../chaquetas.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TallaServService } from '../talla-serv.service';
+import { TallaServService } from '../talla/talla-serv.service';
 
 @Component({
   selector: 'app-actualizar-chaqueta',
@@ -67,6 +67,7 @@ export class ActualizarChaquetaPage implements OnInit {
         (respuesta: any) => {
           this.producto = respuesta
           console.log(respuesta)
+          this.ruta.navigate(['/chaquetas'])
         },
         (error) => {
           console.log(error)
