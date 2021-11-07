@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChaquetasService } from '../chaquetas.service';
 import { TallaServService } from '../talla/talla-serv.service';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-agregar-item',
@@ -12,7 +14,7 @@ export class AgregarItemPage implements OnInit {
   // Creación de una variable ANY para que el HTML pueda leer la información desde la API
   productos: any = []
   listado: any = []
-  constructor(private router: Router, private chaquetaService: ChaquetasService, private tallaserv: TallaServService) { }
+  constructor(private router: Router, private chaquetaService: ChaquetasService, private tallaserv: TallaServService, private alertController: AlertController) { }
 
   ngOnInit() {
 
@@ -35,7 +37,33 @@ export class AgregarItemPage implements OnInit {
   }
 
   //Metodo para agregar
-  agregarChaqueta(nombre, imagenURL, talla, precio, descripcion) {
+  async agregarChaqueta(nombre, imagenURL, talla, precio, descripcion) {
+
+
+      const alert = await this.alertController.create({
+        header: 'Confirmacion',
+        message: '¿Desea registrar un nuevo producto?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: (blah) => {
+              console.log('Confirm Cancel: blah');
+            }
+          }, {
+            text: 'Okay',
+            handler: () => {
+              console.log('Confirm Okay');
+            }
+          }
+        ]
+      });
+  
+      await alert.present();
+  
+      const { role } = await alert.onDidDismiss();
+      console.log('onDidDismiss resolved with role', role);
+    
     // Creación de una lista de comentaeios, un Array de tipo String
     var lista = []
 
