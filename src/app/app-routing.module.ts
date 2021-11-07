@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
     path: '',
@@ -13,27 +13,32 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'chaquetas',
     children: [
       {
         path: "",
-        loadChildren: () => import('./chaquetas/chaquetas.module').then( m => m.ChaquetasPageModule)
+        loadChildren: () => import('./chaquetas/chaquetas.module').then(m => m.ChaquetasPageModule)
       },
       {
         path: ":chaqID",
-        loadChildren: () => import('./chaquetas/detalle-chaquetas/detalle-chaquetas.module').then( m => m.DetalleChaquetasPageModule)
+        loadChildren: () => import('./chaquetas/detalle-chaquetas/detalle-chaquetas.module').then(m => m.DetalleChaquetasPageModule)
       }
-      
+
     ]
-    
+
   },
   {
     path: 'agregar-item',
-    loadChildren: () => import('./chaquetas/agregar-item/agregar-item.module').then( m => m.AgregarItemPageModule)
+    loadChildren: () => import('./chaquetas/agregar-item/agregar-item.module').then(m => m.AgregarItemPageModule)
   },
+  {
+    path: 'actualizar-chaqueta/:chaqID',
+    loadChildren: () => import('./chaquetas/actualizar-chaqueta/actualizar-chaqueta.module').then(m => m.ActualizarChaquetaPageModule)
+  },
+
 ];
 
 

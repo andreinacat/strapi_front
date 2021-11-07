@@ -6,6 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 // Declaramos el modulo para poder ocupar el NgFor
 import { AgregarItemPageModule } from './chaquetas/agregar-item/agregar-item.module';
+import { ActualizarChaquetaPageModule } from './chaquetas/actualizar-chaqueta/actualizar-chaqueta.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,4 +22,4 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
