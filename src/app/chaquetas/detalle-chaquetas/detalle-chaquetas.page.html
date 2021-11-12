@@ -23,8 +23,8 @@
       <ion-row>
         <ion-col>
           <!-- AGREGAR ETIQUETA CARD PARA QUE LA IMAGEN SE VEA MEJOR -->
-          <!-- <ion-img [src]="producto.imagenURL" ></ion-img> -->
-          <ion-img [src] ="'http://localhost:1337' + c.imagenURL.url"></ion-img>
+          <!-- <ion-img [src]="producto.imagenURL.url" ></ion-img> -->
+          <ion-img [src] ="'http://localhost:1337' + producto.imagenURL.url"></ion-img>
         </ion-col>
       </ion-row>
   
@@ -50,19 +50,13 @@
       <!-- Comentarios -->
       <ion-row>
         <ion-col>
-          <ion-list *ngIf=" producto.descripcion && producto.descripcion.length > 0; else sinDescripcion ">
-              <ion-item *ngFor="let desc of producto.descripcion">
-                <h1>{{desc}}</h1>
-              </ion-item>
-          </ion-list>
-  
+              
+                <h1>{{producto.descripcion}}</h1>
+              
+         
           <!-- ngTemplate: Segmento de código que aparece bajo una condición -->
           <!-- Cuando no hay una descripción asociada a una Chaqueta -->
-          <ng-template #sinDescripcion>
-            <ion-text>
-              <p class="ion-text-center">Producto Sin Descripción</p>  
-            </ion-text>  
-          </ng-template>
+          
   
         </ion-col>
       </ion-row>

@@ -5,6 +5,6 @@ export interface Producto{
     imagenURL : string;
     talla : string;
     precio : number;
-    descripcion : string[],
+    descripcion : string,
     importado : boolean;
 }
