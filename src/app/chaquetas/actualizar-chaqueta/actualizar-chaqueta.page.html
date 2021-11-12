@@ -17,7 +17,7 @@
               <ion-input class="ion-text-center" type="text" placeholder="Nombre Producto" [(ngModel)]="producto.nombre" #nombre></ion-input>
           </ion-item>
           <ion-item>
-              <ion-input class="ion-text-center" type="text" placeholder="Imagen" [(ngModel)]="producto.imagenURL" #imagenURL></ion-input>
+            <ion-input class="ion-text-center" type="file" placeholder="Imagen" accept="image/*" [(ngModel)]="imageFilePath" (change)="capturarImagen($event)"></ion-input>
           </ion-item>
           <ion-item> 
             <!-- Creación del Combo Box -->
@@ -32,9 +32,14 @@
           <ion-item>
               <ion-input class="ion-text-center" type="text" placeholder="Descripcion" [(ngModel)]="producto.descripcion"     #descripcion></ion-input> 
           </ion-item>
+
+          <!-- Creación de un Check Box -->
+          <ion-item>
+            <ion-checkbox checked="false" #importado></ion-checkbox><label class="ion-text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Producto Importado</label>
+          </ion-item>
           
           <div padding>
-              <ion-button color="secondary" (click)="actualizar(nombre, imagenURL, talla, precio, descripcion)"  size="large"  expand="block">registrar</ion-button>
+              <ion-button color="secondary" (click)="actualizar(nombre, imagenURL, talla, precio, descripcion, importado)"  size="large"  expand="block">Actualizar</ion-button>
           </div>
     </ion-card-content>     
     </ion-col>

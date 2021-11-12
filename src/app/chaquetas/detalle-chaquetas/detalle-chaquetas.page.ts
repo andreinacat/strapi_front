@@ -62,7 +62,7 @@ export class DetalleChaquetasPage implements OnInit {
       (respuesta: any) => {
         this.producto = respuesta
         console.log(respuesta)
-        this.route.navigate(['/productos'])
+        this.route.navigate(['/chaquetas'])
       },
       (error: any) => {
         console.log(error)

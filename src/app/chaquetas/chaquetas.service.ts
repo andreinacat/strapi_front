@@ -27,13 +27,13 @@ export class ChaquetasService {
   }
 
   // Agregar un Producto:
-  addChaquetas(nombre: string, imagenURL: string, talla: string, precio: number, descripcion: string[]) {
+  addChaquetas(nombre: string, talla: string, precio: number, descripcion: string[], importado: boolean) {
     var datos = {
       "Nombre": nombre,
-      "ImagenURL": imagenURL,
       "Talla": talla,
       "Precio": precio,
-      "Descripcion": descripcion[0]
+      "Descripcion": descripcion[0],
+      "Importado" : importado
     }
     return this.http.post('http://localhost:1337/Productos/', datos);
   }
@@ -47,16 +47,18 @@ export class ChaquetasService {
     return this.http.get('http://localhost:1337/tallas/' + tallaId);
   }
 
-  ActualizarProducto(chaqId: string, nombre: string, imagenURL: string, talla: string, precio: number, descripcion: string) {
+  ActualizarProducto(chaqId: string, nombre: string, talla: string, precio: number, descripcion: string, importado: boolean) {
 
     var datos = {
       "nombre": nombre,
-      "imagenURL": imagenURL,
       "talla": talla,
       "precio": precio,
-      "descripcion": descripcion
+      "descripcion": descripcion,
+      "Importado": importado 
 
     }
+
+    console.log("test",importado)
     return this.http.put('http://localhost:1337/Productos/' + chaqId, datos);
   }
 }

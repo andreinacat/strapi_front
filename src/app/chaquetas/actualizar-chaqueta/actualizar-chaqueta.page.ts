@@ -22,7 +22,7 @@ export class ActualizarChaquetaPage implements OnInit {
     this.activatedRuta.paramMap.subscribe(paramMap => {
 
       const valor = paramMap.get('chaqID')
-
+        
       this.chaquetaserv.getChaquetasById(valor).subscribe(
         (respuesta: any) => {
           this.producto = respuesta
@@ -45,6 +45,7 @@ export class ActualizarChaquetaPage implements OnInit {
       )
     })
 
+
     this.tallaserv.getTallas().subscribe(
       (respuesta: any) => {
         this.listado = respuesta
@@ -56,17 +57,17 @@ export class ActualizarChaquetaPage implements OnInit {
 
 
     )
+    
   }
-  actualizar(nombre, imgURL, talla, precio, descripcion) {
-
+  actualizar(nombre, talla, precio, descripcion, importado) {
     this.activatedRuta.paramMap.subscribe(paramMap => {
-
       const valor = paramMap.get('chaqID')
-
-      this.chaquetaserv.ActualizarProducto(valor, nombre.value, imgURL.value, talla.value, precio.value, descripcion.value).subscribe(
+      const importa = importado.checked 
+     
+      this.chaquetaserv.ActualizarProducto(valor, nombre.value, talla.value, precio.value, descripcion.value, importa ).subscribe(
         (respuesta: any) => {
           this.producto = respuesta
-          console.log(respuesta)
+          
           this.ruta.navigate(['/chaquetas'])
         },
         (error) => {

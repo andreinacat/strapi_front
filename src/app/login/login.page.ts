@@ -23,8 +23,8 @@ export class LoginPage implements OnInit {
   if(usuario == "admin" && contrasenia == "123"){
 
       const alert = await this.alertController.create({
-        header: 'Bienvenido' + usuario,
-        message: 'Usted se ha logueado con exito',
+        header: 'Bienvenido ' + usuario,
+        message: 'Ingreso Exitoso',
         buttons: ['Aceptar']
       });
   

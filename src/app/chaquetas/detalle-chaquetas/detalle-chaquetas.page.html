@@ -36,7 +36,13 @@
 
       <ion-row>
         <ion-col>
-          <h1 class="ion-text-center">Precio : $ {{producto.precio}}</h1>
+          <h1 class="ion-text-center">Precio : ${{producto.precio}}</h1>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <h1 class="ion-text-center">Importado : {{producto.Importado ? "Si" : "No"}}</h1>
         </ion-col>
       </ion-row>
   
@@ -63,7 +69,7 @@
 
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="dark" (click)="redireccionActualizar()">
-      <ion-icon name="options"></ion-icon>
+      <ion-icon name="create-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
