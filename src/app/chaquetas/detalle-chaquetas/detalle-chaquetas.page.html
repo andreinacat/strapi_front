@@ -23,7 +23,8 @@
       <ion-row>
         <ion-col>
           <!-- AGREGAR ETIQUETA CARD PARA QUE LA IMAGEN SE VEA MEJOR -->
-          <ion-img [src]="producto.imagenURL" ></ion-img>
+          <!-- <ion-img [src]="producto.imagenURL" ></ion-img> -->
+          <ion-img [src] ="'http://localhost:1337' + c.imagenURL.url"></ion-img>
         </ion-col>
       </ion-row>
   
