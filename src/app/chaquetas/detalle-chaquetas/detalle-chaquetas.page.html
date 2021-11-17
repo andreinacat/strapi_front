@@ -21,11 +21,14 @@
     <!-- Grilla para las Imagenes, Filas y Columnas -->
     <ion-grid class="ion-no-padding">
       <ion-row>
-        <ion-col>
-          <!-- AGREGAR ETIQUETA CARD PARA QUE LA IMAGEN SE VEA MEJOR -->
-          <!-- <ion-img [src]="producto.imagenURL.url" ></ion-img> -->
-          <ion-img [src] ="'http://localhost:1337' + producto.imagenURL.url"></ion-img>
-        </ion-col>
+        <ion-card>
+          <ion-col *ngFor="let x of talla.productos">
+            <!-- AGREGAR ETIQUETA CARD PARA QUE LA IMAGEN SE VEA MEJOR -->
+            <!-- <ion-img [src]="producto.imagenURL.url" ></ion-img> -->
+            <!-- ERROR DE LECTURA A NIVEL DE HTML AL TRATAR DE INGRESAR AL DETALLE DE UNA CIERTA CHAQUETA -->
+            <ion-img [src] ="'http://localhost:1337' + x.imagenURL.url"></ion-img>
+          </ion-col>
+        </ion-card>
       </ion-row>
   
       <!-- Información del Producto, Nombre -->
@@ -50,14 +53,7 @@
       <!-- Comentarios -->
       <ion-row>
         <ion-col>
-              
-                <h1>{{producto.descripcion}}</h1>
-              
-         
-          <!-- ngTemplate: Segmento de código que aparece bajo una condición -->
-          <!-- Cuando no hay una descripción asociada a una Chaqueta -->
-          
-  
+                <h1 class="ion-text-center">{{producto.descripcion}}</h1>       
         </ion-col>
       </ion-row>
     </ion-grid>

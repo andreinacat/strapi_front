@@ -28,18 +28,18 @@ export class DetalleChaquetasPage implements OnInit {
       // Creamos una variable constante, para capturar el Id que proviene de la URL
       const valor = paramMap.get('chaqID')
       this.idproducto = valor;
-      console.log(valor)
+      
 
       // Llamamos al Servicio y le pasamos el Id de la URL previamente capturada, estando suscritos en tiempo real
       this.chaquetasServicio.getChaquetasById(valor).subscribe(
         (respuesta: any) => {
           this.producto = respuesta
-          console.log(respuesta)
+          //console.log(respuesta)
           // Recuperar Id Talla y Nombre Talla
           this.chaquetasServicio.getTallaById(this.producto.talla.id).subscribe(
-            (respuesta: any) => {
-              this.talla = respuesta
-              console.log(respuesta)
+            (respuesta2: any) => {
+              this.talla =respuesta2
+              console.log(respuesta2)
             },
             (error) => {
               console.log(error)
@@ -50,9 +50,11 @@ export class DetalleChaquetasPage implements OnInit {
           console.log(error)
         }
       )
-      console.log(this.producto)
+     
 
     })
+     
+
   }
 
   // Método Eliminar:

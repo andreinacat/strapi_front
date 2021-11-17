@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
     localStorage.setItem("jwt",token_jwt);
     const alert = await this.alertController.create({
       header: 'Bienvenido ' + data.user.username,
-      message: 'Usted se ha logueado con exito',
+      message: 'Ingreso Exitoso',
       buttons: ['Aceptar']
     });
 
@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
     console.log(error);
     const alert = await this.alertController.create({
       header: 'ERROR',
-      message: 'No se ha podido loguear',
+      message: 'Credenciales Incorrectas',
       buttons: ['Aceptar']
     });
     await alert.present();

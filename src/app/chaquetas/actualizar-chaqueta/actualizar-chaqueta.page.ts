@@ -76,8 +76,8 @@ export class ActualizarChaquetaPage implements OnInit {
 
       )
     })
-
-
   }
+
+  
 
 }

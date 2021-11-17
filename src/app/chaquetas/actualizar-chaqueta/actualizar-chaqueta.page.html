@@ -17,7 +17,7 @@
               <ion-input class="ion-text-center" type="text" placeholder="Nombre Producto" [(ngModel)]="producto.nombre" #nombre></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input class="ion-text-center" type="file" placeholder="Imagen" accept="image/*" [(ngModel)]="imageFilePath" (change)="capturarImagen($event)"></ion-input>
+            <ion-input class="ion-text-center" type="file" placeholder="Imagen" accept="image/*" [(ngModel)]="imageFilePath" (change)="actualizarImagen($event)"></ion-input>
           </ion-item>
           <ion-item> 
             <!-- Creación del Combo Box -->
