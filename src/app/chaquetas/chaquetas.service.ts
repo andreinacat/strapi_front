@@ -29,11 +29,12 @@ export class ChaquetasService {
   // Agregar un Producto:
   addChaquetas(nombre: string, talla: string, precio: number, descripcion: string[], importado: boolean) {
     var datos = {
-      "Nombre": nombre,
-      "Talla": talla,
-      "Precio": precio,
-      "Descripcion": descripcion[0],
-      "Importado" : importado
+
+      "nombre": nombre,
+      "talla": talla,
+      "precio": precio,
+      "descripcion": descripcion
+
     }
     return this.http.post('http://localhost:1337/Productos/', datos);
   }
