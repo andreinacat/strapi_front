@@ -19,7 +19,11 @@ export class ChaquetasPage implements OnInit {
   // El objeto "productos" estará suscrito en linea a nuestra API en tiempo real
 	this.servicioProductos.getChaquetas().subscribe(
     // Realización de 2 promesas para el método abarcando 2 posibilidades al llamar al método.
-    (resp) => { this.productos = resp },
+    (resp) => { 
+      this.productos = resp 
+      localStorage.setItem("nuevoId", this.productos[this.productos.length-1].id+1)
+      console.log(this.productos[this.productos.length-1].id+1)
+    },
     (error) => { console.log(error) }
   )
   }
@@ -28,7 +32,10 @@ export class ChaquetasPage implements OnInit {
   ionViewWillEnter(){
     this.servicioProductos.getChaquetas().subscribe(
       // Realizamos 2 promesas del método para abarcar las 2 posibilidades al llamar el metodo, lo bueno y el error
-      (resp) => { this.productos = resp },
+      (resp) => { this.productos = resp 
+                  localStorage.setItem("nuevoId", this.productos[this.productos.length-1].id+1)
+                  console.log(this.productos[this.productos.length-1].id+1)
+      },
       (error) => { console.log(error) }
     )
   }
@@ -37,6 +44,5 @@ export class ChaquetasPage implements OnInit {
   redireccionAgregar(){
     this.ruta.navigate(['/agregar-item']);
   }
- 
 
 }

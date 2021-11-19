@@ -14,6 +14,7 @@ export class ActualizarChaquetaPage implements OnInit {
   producto: any = [];
   talla: any = [];
   listado: any = [];
+  private archivo: File = null;
 
   constructor(private activatedRuta: ActivatedRoute, private ruta: Router, private chaquetaserv: ChaquetasService, private tallaserv: TallaServService) { }
 
@@ -78,6 +79,9 @@ export class ActualizarChaquetaPage implements OnInit {
     })
   }
 
-  
+  actualizarImagen(event){
+    // Actualizar Imagen en una variable global creada antes del constructor
+    this.archivo = <File>event.target.files[0]
+  }
 
 }

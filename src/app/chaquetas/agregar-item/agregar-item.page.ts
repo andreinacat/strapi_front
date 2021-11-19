@@ -31,8 +31,6 @@ export class AgregarItemPage implements OnInit {
       (error) => {
         console.log(error)
       }
-
-
     )
   }
 
@@ -49,8 +47,7 @@ export class AgregarItemPage implements OnInit {
     const datos = new FormData()
     datos.append('files', this.archivo)
     datos.append('ref', 'Producto')
-    // modificar el id como variable que muestre el ultimo id de la db +1
-    datos.append('refId', '17')
+    datos.append('refId', localStorage.getItem("nuevoId"))
     datos.append('field', 'imagenURL')
 
     // Definimos la ruta de STRAPI donde se cargarán las imagenes
@@ -68,7 +65,7 @@ export class AgregarItemPage implements OnInit {
     }
 
     // Guardado de los valores de los datos dentro del método agregar
-    this.chaquetaService.addChaquetas(nombre.value, talla.value, precio.value, lista, importado.value).subscribe(
+    this.chaquetaService.addChaquetas(nombre.value, talla.value, precio.value, descripcion.value, importado.value).subscribe(
       (respuesta) => {
         console.log(respuesta)
         // Redireccionamos a la pagina de productos de TresPass
