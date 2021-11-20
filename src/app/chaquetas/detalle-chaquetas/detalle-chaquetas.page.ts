@@ -15,6 +15,7 @@ export class DetalleChaquetasPage implements OnInit {
   // Creamos el objeto "producto", como una variable ANY para recibir cualquier tipo de dato desde nuestra API
   producto: any = [];
   talla: any = [];
+  imagen: any;
   // Creamos una variable privada llamada "idproducto", para rescatar el id del producto de nuestra API
   private idproducto;
 
@@ -28,17 +29,19 @@ export class DetalleChaquetasPage implements OnInit {
       // Creamos una variable constante, para capturar el Id que proviene de la URL
       const valor = paramMap.get('chaqID')
       this.idproducto = valor;
-      
+
 
       // Llamamos al Servicio y le pasamos el Id de la URL previamente capturada, estando suscritos en tiempo real
       this.chaquetasServicio.getChaquetasById(valor).subscribe(
         (respuesta: any) => {
           this.producto = respuesta
-          //console.log(respuesta)
+
+          this.imagen = this.producto.imagenURL.url
+          console.log(this.producto)
           // Recuperar Id Talla y Nombre Talla
           this.chaquetasServicio.getTallaById(this.producto.talla.id).subscribe(
             (respuesta2: any) => {
-              this.talla =respuesta2
+              this.talla = respuesta2
               console.log(respuesta2)
             },
             (error) => {
@@ -50,10 +53,10 @@ export class DetalleChaquetasPage implements OnInit {
           console.log(error)
         }
       )
-     
+
 
     })
-     
+
 
   }
 

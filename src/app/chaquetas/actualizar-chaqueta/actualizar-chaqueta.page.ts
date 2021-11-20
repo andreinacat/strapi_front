@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChaquetasService } from '../chaquetas.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TallaServService } from '../talla/talla-serv.service';
+import axios, { Axios } from 'axios';
 
 @Component({
   selector: 'app-actualizar-chaqueta',
@@ -23,7 +24,7 @@ export class ActualizarChaquetaPage implements OnInit {
     this.activatedRuta.paramMap.subscribe(paramMap => {
 
       const valor = paramMap.get('chaqID')
-        
+
       this.chaquetaserv.getChaquetasById(valor).subscribe(
         (respuesta: any) => {
           this.producto = respuesta
@@ -58,17 +59,33 @@ export class ActualizarChaquetaPage implements OnInit {
 
 
     )
-    
+
   }
   actualizar(nombre, talla, precio, descripcion, importado) {
     this.activatedRuta.paramMap.subscribe(paramMap => {
       const valor = paramMap.get('chaqID')
-      const importa = importado.checked 
-     
-      this.chaquetaserv.ActualizarProducto(valor, nombre.value, talla.value, precio.value, descripcion.value, importa ).subscribe(
+      const importa = importado.checked
+      console.log("archivo", this.archivo)
+      if (this.archivo != null) {
+        console.log(this.archivo)
+        // Agregar Imagen paralelamente por separado:
+        const STRAPI_BASE_URL = 'http://localhost:1337'
+        const datos = new FormData()
+        datos.append('files', this.archivo)
+        datos.append('ref', 'Producto')
+        datos.append('refId', valor)
+        datos.append('field', 'imagenURL')
+
+        // Definimos la ruta de STRAPI donde se cargarán las imagenes
+        axios.post(`${STRAPI_BASE_URL}/upload`, datos)
+      }
+
+
+
+      this.chaquetaserv.ActualizarProducto(valor, nombre.value, talla.value, precio.value, descripcion.value, importa).subscribe(
         (respuesta: any) => {
           this.producto = respuesta
-          
+
           this.ruta.navigate(['/chaquetas'])
         },
         (error) => {
@@ -79,7 +96,7 @@ export class ActualizarChaquetaPage implements OnInit {
     })
   }
 
-  actualizarImagen(event){
+  actualizarImagen(event) {
     // Actualizar Imagen en una variable global creada antes del constructor
     this.archivo = <File>event.target.files[0]
   }
