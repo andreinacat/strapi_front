@@ -52,7 +52,7 @@ export class AgregarItemPage implements OnInit {
 
     // Definimos la ruta de STRAPI donde se cargarán las imagenes
     axios.post(`${STRAPI_BASE_URL}/upload`, datos)
-    
+
     // Creación de una lista de comentaeios, un Array de tipo String
     var lista = []
 
@@ -77,7 +77,7 @@ export class AgregarItemPage implements OnInit {
     )
   }
 
-  capturarImagen(event){
+  capturarImagen(event) {
     // Guardado de la Imagen en una variable global creada antes del constructor
     this.archivo = <File>event.target.files[0]
   }

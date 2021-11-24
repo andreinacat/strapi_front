@@ -55,11 +55,11 @@ export class ChaquetasService {
       "talla": talla,
       "precio": precio,
       "descripcion": descripcion,
-      "Importado": importado 
+      "Importado": importado
 
     }
 
-    console.log("test",importado)
+    console.log("test", importado)
     return this.http.put('http://localhost:1337/Productos/' + chaqId, datos);
   }
 }
