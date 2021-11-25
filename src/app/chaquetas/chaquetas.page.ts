@@ -4,6 +4,7 @@ import { ChaquetasService } from './chaquetas.service';
 // Enrutador para redireccionar
 import { Router } from '@angular/router';
 import { NgZone } from '@angular/core';
+import { NavController, ModalController } from '@ionic/angular';
 //import { AnyTxtRecord } from 'dns';
 
 @Component({
@@ -15,7 +16,8 @@ export class ChaquetasPage implements OnInit {
   // Creación de variable "productos" de tipo generica (ANY) para que pueda recibir cualquier tipo de dato.
   private productos: any = []
   private imagenes = []
-  constructor(private servicioProductos: ChaquetasService, private ruta: Router, private zone: NgZone) { }
+
+  constructor(public navCtrl: NavController, private servicioProductos: ChaquetasService, private ruta: Router, private zone: NgZone) { }
 
   ngOnInit() {
     // El objeto "productos" estará suscrito en linea a nuestra API en tiempo real
@@ -31,6 +33,7 @@ export class ChaquetasPage implements OnInit {
   }
   refresh() {
     this.zone.run(() => {
+      this.navCtrl.navigateRoot('/chaquetas');
       console.log('force update the screen');
     });
   }
@@ -38,16 +41,21 @@ export class ChaquetasPage implements OnInit {
   ionViewWillEnter() {
     this.servicioProductos.getChaquetas().subscribe(
       // Realizamos 2 promesas del método para abarcar las 2 posibilidades al llamar el metodo, lo bueno y el error
-      (resp) => {
-        this.productos = resp;
+      (resp1) => {
+        this.productos = resp1;
         this.productos.forEach(x => {
-          this.imagenes.push(x.imagenURL.url)
-        });
+          if (x.imagenURL == null) {
+            console.log("la pagina sera recargada");
+            location.reload();
+          } else {
+            this.imagenes.push(x.imagenURL.url)
+          }
 
+        });
 
         console.log(this.productos)
         localStorage.setItem("nuevoId", this.productos[this.productos.length - 1].id + 1)
-        console.log(this.productos[this.productos.length - 1].id + 1);
+        console.log("ojo", this.productos[this.productos.length - 1].id + 1);
 
       },
       (error) => {
