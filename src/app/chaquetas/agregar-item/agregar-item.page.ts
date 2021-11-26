@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 
+
 // Declaramos la variable REQUIRE de tipo ANY
 declare var require: any
 
