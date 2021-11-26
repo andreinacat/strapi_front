@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 import { ChaquetasService } from '../chaquetas.service';
 import { TallaServService } from '../talla/talla-serv.service';
 import { AlertController } from '@ionic/angular';
+import axios, { Axios } from 'axios';
+import { HttpClient } from '@angular/common/http';
+
+
 
 // Declaramos la variable REQUIRE de tipo ANY
 declare var require: any
@@ -19,7 +23,7 @@ export class AgregarItemPage implements OnInit {
   listado: any = []
   private archivo: File = null;
 
-  constructor(private router: Router, private chaquetaService: ChaquetasService, private tallaserv: TallaServService, private alertController: AlertController) { }
+  constructor(public httpClient: HttpClient, private router: Router, private chaquetaService: ChaquetasService, private tallaserv: TallaServService, private alertController: AlertController) { }
 
   ngOnInit() {
 
@@ -41,19 +45,26 @@ export class AgregarItemPage implements OnInit {
 
   //Metodo para agregar
   agregarChaqueta(nombre, talla, precio, descripcion, importado) {
-    const axios = require('axios')
-    // Agregar Imagen paralelamente por separado:
-    const STRAPI_BASE_URL = 'http://localhost:1337'
-    const datos = new FormData()
-    datos.append('files', this.archivo)
-    datos.append('ref', 'Producto')
-    datos.append('refId', localStorage.getItem("nuevoId"))
-    datos.append('field', 'imagenURL')
+    //const axios = require('axios')
 
-    // Definimos la ruta de STRAPI donde se cargarán las imagenes
-    axios.post(`${STRAPI_BASE_URL}/upload`, datos)
+    this.chaquetaService.addChaquetas(nombre.value, talla.value, precio.value, descripcion.value, importado.value).subscribe(
+      (respuesta) => {
+        console.log(respuesta)
+        // Redireccionamos a la pagina de productos de TresPass
+        this.router.navigate(['/chaquetas'])
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+
+    // Agregar Imagen paralelamente por separado:
+
+    console.log(this.archivo)
 
     // Creación de una lista de comentaeios, un Array de tipo String
+
+
     var lista = []
 
     if (descripcion.value !== "") {
@@ -65,21 +76,26 @@ export class AgregarItemPage implements OnInit {
     }
 
     // Guardado de los valores de los datos dentro del método agregar
-    this.chaquetaService.addChaquetas(nombre.value, talla.value, precio.value, descripcion.value, importado.value).subscribe(
-      (respuesta) => {
-        console.log(respuesta)
-        // Redireccionamos a la pagina de productos de TresPass
-        this.router.navigate(['/chaquetas'])
-      },
-      (error) => {
-        console.log(error)
-      }
-    )
+
   }
 
   capturarImagen(event) {
     // Guardado de la Imagen en una variable global creada antes del constructor
+    // en caso de desechar borrar el bloque hasta axios
+    console.log("recibiendo archivo")
     this.archivo = <File>event.target.files[0]
+    //bloque --borrado
+    const STRAPI_BASE_URL = 'http://localhost:1337'
+    const datos = new FormData()
+    datos.append('files', this.archivo)
+    datos.append('ref', 'Producto')
+    datos.append('refId', localStorage.getItem("nuevoId"))
+    datos.append('field', 'imagenURL')
+
+
+    // Definimos la ruta de STRAPI donde se cargarán las imagenes
+    axios.post(`${STRAPI_BASE_URL}/upload`, datos)
+    //bloque--borrado
   }
 
 }
