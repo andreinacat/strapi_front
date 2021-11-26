@@ -11,7 +11,8 @@
   <ion-list>
     <ion-item *ngFor="let c of productos ;let indice=index" [routerLink]="['/chaquetas' , c.id]">
       <ion-avatar slot="start">
-        <ion-img [src] ="'http://localhost:1337' + imagenes[indice]"></ion-img>
+       <!--  <ion-img [src] ="'http://localhost:1337' + imagenes[indice]"></ion-img> -->
+       <ion-img [src] ="'http://localhost:1337' + c.imagenURL.url"></ion-img> 
       </ion-avatar>
       <ion-label>{{ c.nombre }}</ion-label>
     </ion-item>

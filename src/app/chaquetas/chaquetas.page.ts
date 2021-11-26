@@ -5,6 +5,7 @@ import { ChaquetasService } from './chaquetas.service';
 import { Router } from '@angular/router';
 import { NgZone } from '@angular/core';
 import { NavController, ModalController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 //import { AnyTxtRecord } from 'dns';
 
 @Component({
@@ -17,7 +18,7 @@ export class ChaquetasPage implements OnInit {
   private productos: any = []
   private imagenes = []
 
-  constructor(public navCtrl: NavController, private servicioProductos: ChaquetasService, private ruta: Router, private zone: NgZone) { }
+  constructor(public navCtrl: NavController, private servicioProductos: ChaquetasService, private ruta: Router, private zone: NgZone, public alertCtrl: AlertController) { }
 
   ngOnInit() {
     // El objeto "productos" estará suscrito en linea a nuestra API en tiempo real
@@ -37,6 +38,22 @@ export class ChaquetasPage implements OnInit {
       console.log('force update the screen');
     });
   }
+  async generarAlerta(prod) {
+    const alert = await this.alertCtrl.create({
+      header: 'ERROR',
+      message: 'La imagen no se ha cargado correctamente, actualice la imagen del producto ' + prod.nombre,
+      buttons: ['Aceptar']
+    });
+
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+    this.ruta.navigate(['/actualizar-chaqueta/' + prod.id]);
+
+
+    //location.reload();
+
+
+  }
   // Refrescamos la nueva lista, sobrecargamos la lista, suscritos a la API
   ionViewWillEnter() {
     this.servicioProductos.getChaquetas().subscribe(
@@ -45,8 +62,8 @@ export class ChaquetasPage implements OnInit {
         this.productos = resp1;
         this.productos.forEach(x => {
           if (x.imagenURL == null) {
-            console.log("la pagina sera recargada");
-            location.reload();
+            this.generarAlerta(x);
+
           } else {
             this.imagenes.push(x.imagenURL.url)
           }
@@ -56,6 +73,7 @@ export class ChaquetasPage implements OnInit {
         console.log(this.productos)
         localStorage.setItem("nuevoId", this.productos[this.productos.length - 1].id + 1)
         console.log("ojo", this.productos[this.productos.length - 1].id + 1);
+
 
       },
       (error) => {

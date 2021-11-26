@@ -87,6 +87,7 @@ export class ActualizarChaquetaPage implements OnInit {
           this.producto = respuesta
 
           this.ruta.navigate(['/chaquetas'])
+
         },
         (error) => {
           console.log(error)
