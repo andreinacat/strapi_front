@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "TresPass",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

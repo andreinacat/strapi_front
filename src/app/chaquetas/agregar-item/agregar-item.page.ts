@@ -83,7 +83,7 @@ export class AgregarItemPage implements OnInit {
   capturarImagen(event) {
     // Guardado de la Imagen en una variable global creada antes del constructor
     // en caso de desechar borrar el bloque hasta axios
-    console.log("recibiendo archivo")
+    console.log("recibiendo archivo",this.archivo)
     this.archivo = <File>event.target.files[0]
     //bloque --borrado
     const STRAPI_BASE_URL = 'http://localhost:1337'

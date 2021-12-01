@@ -20,17 +20,17 @@
             <ion-input class="ion-text-center" type="file" placeholder="Imagen" accept="image/*" [(ngModel)]="imageFilePath" (change)="actualizarImagen($event)"></ion-input>
           </ion-item>
           <ion-item> 
-            <!-- Creación del Combo Box -->
-            <ion-select placeholder="Talla" interface = "popover" [compareWith]="compareWith" value="{{talla.id}}" #talla>
-              <ion-select-option *ngFor="let l of listado" [value]="l.id">{{l.nombre}} </ion-select-option>
+          <!-- Creación del Combo Box -->
+          <ion-select placeholder="Talla" interface = "popover" [compareWith]="compareWith" value="{{talla.id}}" #talla>
+            <ion-select-option *ngFor="let l of listado" [value]="l.id">{{l.nombre}} </ion-select-option>
           </ion-select>
           </ion-item>
           <ion-item>
-              <ion-input class="ion-text-center" type="number" placeholder="Precio" [(ngModel)]="producto.precio"  #precio ></ion-input>
+              <ion-input class="ion-text-center" type="number" placeholder="Precio" [(ngModel)]="producto.precio" #precio ></ion-input>
           </ion-item>
 
           <ion-item>
-              <ion-input class="ion-text-center" type="text" placeholder="Descripcion" [(ngModel)]="producto.descripcion"     #descripcion></ion-input> 
+              <ion-input class="ion-text-center" type="text" placeholder="Descripcion" [(ngModel)]="producto.descripcion" #descripcion></ion-input> 
           </ion-item>
 
           <!-- Creación de un Check Box -->
