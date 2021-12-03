@@ -38,11 +38,12 @@ export class DetalleChaquetasPage implements OnInit {
 
           this.imagen = this.producto.imagenURL.url
           console.log(this.producto)
+          console.log("importado ", this.producto.Importado)
           // Recuperar Id Talla y Nombre Talla
           this.chaquetasServicio.getTallaById(this.producto.talla.id).subscribe(
             (respuesta2: any) => {
               this.talla = respuesta2
-              console.log(respuesta2)
+              console.log("talla ", respuesta2)
             },
             (error) => {
               console.log(error)

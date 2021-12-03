@@ -5,6 +5,7 @@ import { TallaServService } from '../talla/talla-serv.service';
 import { AlertController } from '@ionic/angular';
 import axios, { Axios } from 'axios';
 import { HttpClient } from '@angular/common/http';
+import { async } from '@angular/core/testing';
 
 
 
@@ -22,7 +23,8 @@ export class AgregarItemPage implements OnInit {
   // Creación de una variable ANY para que el HTML pueda leer la información desde la API
   productos: any = []
   listado: any = []
-  private archivo: File = null;
+  img1: any;
+  private archivo: File;
 
   constructor(public httpClient: HttpClient, private router: Router, private chaquetaService: ChaquetasService, private tallaserv: TallaServService, private alertController: AlertController) { }
 
@@ -47,6 +49,13 @@ export class AgregarItemPage implements OnInit {
   //Metodo para agregar
   agregarChaqueta(nombre, talla, precio, descripcion, importado) {
     //const axios = require('axios')
+    const config = {
+      onUploadProgress: function (progressEvent) {
+        var porcentaje = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        console.log("porcentaje", porcentaje)
+
+      }
+    }
 
     this.chaquetaService.addChaquetas(nombre.value, talla.value, precio.value, descripcion.value, importado.value).subscribe(
       (respuesta) => {
@@ -60,8 +69,18 @@ export class AgregarItemPage implements OnInit {
     )
 
     // Agregar Imagen paralelamente por separado:
+    const STRAPI_BASE_URL = 'http://localhost:1337'
+    const datos = new FormData()
+    datos.append('files', this.archivo)
+    datos.append('ref', 'Producto')
+    datos.append('refId', localStorage.getItem("nuevoId"))
+    datos.append('field', 'imagenURL')
 
-    console.log(this.archivo)
+
+    // Definimos la ruta de STRAPI donde se cargarán las imagenes
+    axios.post(`${STRAPI_BASE_URL}/upload`, datos, config)
+
+    //console.log(this.archivo)
 
     // Creación de una lista de comentaeios, un Array de tipo String
 
@@ -83,20 +102,27 @@ export class AgregarItemPage implements OnInit {
   capturarImagen(event) {
     // Guardado de la Imagen en una variable global creada antes del constructor
     // en caso de desechar borrar el bloque hasta axios
-    console.log("recibiendo archivo")
-    this.archivo = <File>event.target.files[0]
+    //console.log("recibiendo archivo", this.archivo)
+    //this.archivo = <File>event.target.files[0]
     //bloque --borrado
-    const STRAPI_BASE_URL = 'http://localhost:1337'
-    const datos = new FormData()
-    datos.append('files', this.archivo)
-    datos.append('ref', 'Producto')
-    datos.append('refId', localStorage.getItem("nuevoId"))
-    datos.append('field', 'imagenURL')
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      this.archivo = <File>event.target.files[0];
+      reader.onload = (event: any) => {
+        this.img1 = event.target.result;
 
+        console.log("archivo", this.archivo);
+      }
+      reader.readAsDataURL(event.target.files[0]);  // to trigger onload
+    }
 
-    // Definimos la ruta de STRAPI donde se cargarán las imagenes
-    axios.post(`${STRAPI_BASE_URL}/upload`, datos)
-    //bloque--borrado
+    let fileList: FileList = event.target.files;
+    return this.archivo
+
+    //console.log("archivo1", file);
   }
 
+  //bloque--borrado
 }
+
+

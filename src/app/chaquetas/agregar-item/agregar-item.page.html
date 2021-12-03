@@ -24,6 +24,12 @@
           <ion-item>
               <ion-input class="ion-text-center" type="file" placeholder="Imagen" accept="image/*" [(ngModel)]="imageFilePath" (change)="capturarImagen($event)"></ion-input>
           </ion-item>
+          <ion-item>
+          <img *ngIf="img1" [src]="img1"/>
+          <br>
+          <progress max="100" :value.prop="uploadPercentage"></progress>
+          <br>
+          </ion-item>
 
           <!-- Creación del Combo Box -->
           <ion-item> 

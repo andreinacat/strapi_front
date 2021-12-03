@@ -30,6 +30,7 @@ export class ActualizarChaquetaPage implements OnInit {
           this.producto = respuesta
           console.log(respuesta)
 
+
           this.chaquetaserv.getTallaById(this.producto.talla.id).subscribe(
             (respuesta: any) => {
               this.talla = respuesta
