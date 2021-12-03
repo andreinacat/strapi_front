@@ -1,5 +1,7 @@
 {
   "name": "TresPass",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
