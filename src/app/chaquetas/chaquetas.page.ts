@@ -62,8 +62,8 @@ export class ChaquetasPage implements OnInit {
         this.productos = resp1;
         this.productos.forEach(x => {
           if (x.imagenURL == null) {
+            location.reload();
             this.generarAlerta(x);
-            //location.reload();
 
           } else {
             this.imagenes.push(x.imagenURL.url)

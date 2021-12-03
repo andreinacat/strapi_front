@@ -16,6 +16,7 @@ export class ActualizarChaquetaPage implements OnInit {
   talla: any = [];
   listado: any = [];
   private archivo: File = null;
+  public imagen: any;
 
   constructor(private activatedRuta: ActivatedRoute, private ruta: Router, private chaquetaserv: ChaquetasService, private tallaserv: TallaServService) { }
 
@@ -27,8 +28,10 @@ export class ActualizarChaquetaPage implements OnInit {
 
       this.chaquetaserv.getChaquetasById(valor).subscribe(
         (respuesta: any) => {
+          const STRAPI_BASE_URL = 'http://localhost:1337'
           this.producto = respuesta
-          console.log(respuesta)
+          this.imagen = STRAPI_BASE_URL + this.producto.imagenURL.url
+          console.log("imagen cargada", this.imagen)
 
 
           this.chaquetaserv.getTallaById(this.producto.talla.id).subscribe(
@@ -62,7 +65,7 @@ export class ActualizarChaquetaPage implements OnInit {
     )
 
   }
-  actualizar(nombre, talla, precio, descripcion, importado) {
+  actualizar(nombre, talla1, precio, descripcion, importado) {
     this.activatedRuta.paramMap.subscribe(paramMap => {
       const valor = paramMap.get('chaqID')
       const importa = importado.checked
@@ -83,7 +86,7 @@ export class ActualizarChaquetaPage implements OnInit {
 
 
 
-      this.chaquetaserv.ActualizarProducto(valor, nombre.value, talla.value, precio.value, descripcion.value, importa).subscribe(
+      this.chaquetaserv.ActualizarProducto(valor, nombre.value, talla1.value, precio.value, descripcion.value, importa).subscribe(
         (respuesta: any) => {
           this.producto = respuesta
 

@@ -60,6 +60,17 @@ export class AgregarItemPage implements OnInit {
     this.chaquetaService.addChaquetas(nombre.value, talla.value, precio.value, descripcion.value, importado.value).subscribe(
       (respuesta) => {
         console.log(respuesta)
+        // Agregar Imagen paralelamente por separado:
+        const STRAPI_BASE_URL = 'http://localhost:1337'
+        const datos = new FormData()
+        datos.append('files', this.archivo)
+        datos.append('ref', 'Producto')
+        datos.append('refId', localStorage.getItem("nuevoId"))
+        datos.append('field', 'imagenURL')
+
+
+        // Definimos la ruta de STRAPI donde se cargarán las imagenes
+        axios.post(`${STRAPI_BASE_URL}/upload`, datos, config)
         // Redireccionamos a la pagina de productos de TresPass
         this.router.navigate(['/chaquetas'])
       },
@@ -68,17 +79,7 @@ export class AgregarItemPage implements OnInit {
       }
     )
 
-    // Agregar Imagen paralelamente por separado:
-    const STRAPI_BASE_URL = 'http://localhost:1337'
-    const datos = new FormData()
-    datos.append('files', this.archivo)
-    datos.append('ref', 'Producto')
-    datos.append('refId', localStorage.getItem("nuevoId"))
-    datos.append('field', 'imagenURL')
 
-
-    // Definimos la ruta de STRAPI donde se cargarán las imagenes
-    axios.post(`${STRAPI_BASE_URL}/upload`, datos, config)
 
     //console.log(this.archivo)
 

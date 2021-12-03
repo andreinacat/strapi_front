@@ -18,10 +18,14 @@
           </ion-item>
           <ion-item>
             <ion-input class="ion-text-center" type="file" placeholder="Imagen" accept="image/*" [(ngModel)]="imageFilePath" (change)="actualizarImagen($event)"></ion-input>
+           
+          </ion-item>
+          <ion-item>
+            <img src="{{imagen}}">
           </ion-item>
           <ion-item> 
             <!-- Creación del Combo Box placeholder="Talla" interface = "popover" [compareWith]="compareWith" -->
-          <ion-select placeholder="Talla" value="{{talla.id}}" #talla>
+          <ion-select placeholder="Talla" value="{{talla.id}}" #talla1>
               <ion-select-option *ngFor="let l of listado" value="{{l.id}}" >{{l.nombre}}</ion-select-option>
           </ion-select>
           </ion-item>
@@ -35,11 +39,11 @@
 
           <!-- Creación de un Check Box -->
           <ion-item>
-            <ion-checkbox checked="true" #importado></ion-checkbox><label class="ion-text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Producto Importado</label>
+            <ion-checkbox checked="{{producto.Importado}}" #importado></ion-checkbox><label class="ion-text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Producto Importado</label>
           </ion-item>
           
           <div padding>
-              <ion-button color="secondary" (click)="actualizar(nombre, talla, precio, descripcion, importado)"  size="large"  expand="block">Actualizar</ion-button>
+              <ion-button color="secondary" (click)="actualizar(nombre, talla1, precio, descripcion, importado)"  size="large"  expand="block">Actualizar</ion-button>
           </div>
     </ion-card-content>     
     </ion-col>
