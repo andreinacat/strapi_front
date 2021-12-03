@@ -20,8 +20,8 @@
             <ion-input class="ion-text-center" type="file" placeholder="Imagen" accept="image/*" [(ngModel)]="imageFilePath" (change)="actualizarImagen($event)"></ion-input>
           </ion-item>
           <ion-item> 
-            <!-- Creación del Combo Box placeholder="Talla" interface = "popover" [compareWith]="compareWith" #talla-->
-          <ion-select placeholder="Talla" value="{{talla.id}}">
+            <!-- Creación del Combo Box placeholder="Talla" interface = "popover" [compareWith]="compareWith" -->
+          <ion-select placeholder="Talla" value="{{talla.id}}" #talla>
               <ion-select-option *ngFor="let l of listado" value="{{l.id}}" >{{l.nombre}}</ion-select-option>
           </ion-select>
           </ion-item>
