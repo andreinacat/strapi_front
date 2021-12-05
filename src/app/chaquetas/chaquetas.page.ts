@@ -17,6 +17,7 @@ export class ChaquetasPage implements OnInit {
   // Creación de variable "productos" de tipo generica (ANY) para que pueda recibir cualquier tipo de dato.
   private productos: any = []
   private imagenes = []
+  public estado: boolean;
 
   constructor(public navCtrl: NavController, private servicioProductos: ChaquetasService, private ruta: Router, private zone: NgZone, public alertCtrl: AlertController) { }
 
@@ -47,7 +48,7 @@ export class ChaquetasPage implements OnInit {
 
     await alert.present();
     const { role } = await alert.onDidDismiss();
-    this.ruta.navigate(['/actualizar-chaqueta/' + prod.id]);
+    //this.ruta.navigate(['/actualizar-chaqueta/' + prod.id]);
 
 
     //location.reload();
@@ -62,8 +63,9 @@ export class ChaquetasPage implements OnInit {
         this.productos = resp1;
         this.productos.forEach(x => {
           if (x.imagenURL == null) {
-            location.reload();
-            this.generarAlerta(x);
+            //location.reload();
+            this.estado = true
+            //this.generarAlerta(x);
 
           } else {
             this.imagenes.push(x.imagenURL.url)
@@ -87,6 +89,9 @@ export class ChaquetasPage implements OnInit {
   // Dirigir al html de Agregar-Item
   redireccionAgregar() {
     this.ruta.navigate(['/agregar-item']);
+  }
+  recarga() {
+    location.reload();
   }
 
 }

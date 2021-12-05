@@ -25,6 +25,9 @@ export class AgregarItemPage implements OnInit {
   listado: any = []
   img1: any;
   private archivo: File;
+  pprod: any = []
+  pprod1: any = []
+
 
   constructor(public httpClient: HttpClient, private router: Router, private chaquetaService: ChaquetasService, private tallaserv: TallaServService, private alertController: AlertController) { }
 
@@ -48,6 +51,7 @@ export class AgregarItemPage implements OnInit {
 
   //Metodo para agregar
   agregarChaqueta(nombre, talla, precio, descripcion, importado) {
+    const STRAPI_BASE_URL = 'http://localhost:1337'
     //const axios = require('axios')
     const config = {
       onUploadProgress: function (progressEvent) {
@@ -60,19 +64,31 @@ export class AgregarItemPage implements OnInit {
     this.chaquetaService.addChaquetas(nombre.value, talla.value, precio.value, descripcion.value, importado.value).subscribe(
       (respuesta) => {
         console.log(respuesta)
-        // Agregar Imagen paralelamente por separado:
-        const STRAPI_BASE_URL = 'http://localhost:1337'
-        const datos = new FormData()
-        datos.append('files', this.archivo)
-        datos.append('ref', 'Producto')
-        datos.append('refId', localStorage.getItem("nuevoId"))
-        datos.append('field', 'imagenURL')
+        this.pprod1 = respuesta
+        // busqueda del objeto recien creado si y solo si existe se recupera el id y luego asocia la imagen a ese id
+        this.chaquetaService.getChaquetasById(this.pprod1.id).subscribe(
+          (resp: any) => {
+            this.pprod = resp
+            console.log("producto single", this.pprod)
+
+            // Agregar Imagen paralelamente por separado:
+            const datos = new FormData()
+            datos.append('files', this.archivo)
+            datos.append('ref', 'Producto')
+            datos.append('refId', this.pprod.id)
+            datos.append('field', 'imagenURL')
 
 
-        // Definimos la ruta de STRAPI donde se cargarán las imagenes
-        axios.post(`${STRAPI_BASE_URL}/upload`, datos, config)
-        // Redireccionamos a la pagina de productos de TresPass
-        this.router.navigate(['/chaquetas'])
+            // Definimos la ruta de STRAPI donde se cargarán las imagenes
+            axios.post(`${STRAPI_BASE_URL}/upload`, datos, config)
+            // Redireccionamos a la pagina de productos de TresPass
+            this.router.navigate(['/chaquetas'])
+          },
+          (error) => {
+            console.log("no se pudo crear el producto", error);
+          }
+        )
+
       },
       (error) => {
         console.log(error)

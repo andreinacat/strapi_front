@@ -19,6 +19,11 @@
   </ion-list>
 
   <!-- implementación del botón agregar Chaquetas-->
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed" *ngIf="estado">
+    <ion-fab-button color="dark" (click)="recarga()">
+      <ion-icon name="refresh"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="dark" (click)="redireccionAgregar()">
       <ion-icon name="add"></ion-icon>

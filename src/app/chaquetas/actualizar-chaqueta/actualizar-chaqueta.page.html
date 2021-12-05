@@ -24,7 +24,7 @@
             <img src="{{imagen}}">
           </ion-item>
           <ion-item> 
-            <!-- Creación del Combo Box placeholder="Talla" interface = "popover" [compareWith]="compareWith" -->
+            <!-- Creación del Combo Box -->
           <ion-select placeholder="Talla" value="{{talla.id}}" #talla1>
               <ion-select-option *ngFor="let l of listado" value="{{l.id}}" >{{l.nombre}}</ion-select-option>
           </ion-select>
