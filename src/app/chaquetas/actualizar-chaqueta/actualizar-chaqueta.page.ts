@@ -28,7 +28,7 @@ export class ActualizarChaquetaPage implements OnInit {
 
       this.chaquetaserv.getChaquetasById(valor).subscribe(
         (respuesta: any) => {
-          const STRAPI_BASE_URL = 'http://localhost:1337'
+          const STRAPI_BASE_URL = 'https://api-trespass.herokuapp.com'
           this.producto = respuesta
           this.imagen = STRAPI_BASE_URL + this.producto.imagenURL.url
           console.log("imagen cargada", this.imagen)
@@ -73,7 +73,7 @@ export class ActualizarChaquetaPage implements OnInit {
       if (this.archivo != null) {
         console.log(this.archivo)
         // Agregar Imagen paralelamente por separado:
-        const STRAPI_BASE_URL = 'http://localhost:1337'
+        const STRAPI_BASE_URL = 'https://api-trespass.herokuapp.com'
         const datos = new FormData()
         datos.append('files', this.archivo)
         datos.append('ref', 'Producto')

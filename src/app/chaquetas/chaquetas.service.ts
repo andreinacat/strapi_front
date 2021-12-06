@@ -17,13 +17,13 @@ export class ChaquetasService {
   // Listar todos los Productos:
   getChaquetas() {
     // Retornamos una lista de todos los productos desde nuestra API.
-    return this.http.get('http://localhost:1337/Productos');
+    return this.http.get('https://api-trespass.herokuapp.com/Productos');
   }
 
   // Buscar un producto especifico por su Identificador:
   getChaquetasById(chaquetaId: string) {
     // Se busca el elemento por Id y se retorna solo 1 objeto
-    return this.http.get('http://localhost:1337/Productos/' + chaquetaId);
+    return this.http.get('https://api-trespass.herokuapp.com/Productos/' + chaquetaId);
   }
 
   // Agregar un Producto:
@@ -36,16 +36,16 @@ export class ChaquetasService {
       "descripcion": descripcion
 
     }
-    return this.http.post('http://localhost:1337/Productos/', datos);
+    return this.http.post('https://api-trespass.herokuapp.com/Productos/', datos);
   }
 
   // Eliminar un Producto:
   deleteChaquetas(chaquetaId: string) {
-    return this.http.delete('http://localhost:1337/Productos/' + chaquetaId);
+    return this.http.delete('https://api-trespass.herokuapp.com/Productos/' + chaquetaId);
   }
 
   getTallaById(tallaId: string) {
-    return this.http.get('http://localhost:1337/tallas/' + tallaId);
+    return this.http.get('https://api-trespass.herokuapp.com/tallas/' + tallaId);
   }
 
   ActualizarProducto(chaqId: string, nombre: string, talla: string, precio: number, descripcion: string, importado: boolean) {
@@ -60,6 +60,6 @@ export class ChaquetasService {
     }
 
     console.log("test", importado)
-    return this.http.put('http://localhost:1337/Productos/' + chaqId, datos);
+    return this.http.put('https://api-trespass.herokuapp.com/Productos/' + chaqId, datos);
   }
 }

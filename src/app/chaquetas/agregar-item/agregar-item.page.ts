@@ -51,7 +51,7 @@ export class AgregarItemPage implements OnInit {
 
   //Metodo para agregar
   agregarChaqueta(nombre, talla, precio, descripcion, importado) {
-    const STRAPI_BASE_URL = 'http://localhost:1337'
+    const STRAPI_BASE_URL = 'https://api-trespass.herokuapp.com'
     //const axios = require('axios')
     const config = {
       onUploadProgress: function (progressEvent) {

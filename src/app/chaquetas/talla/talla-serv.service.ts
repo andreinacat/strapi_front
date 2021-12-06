@@ -9,6 +9,6 @@ export class TallaServService {
   constructor(private http: HttpClient) { }
 
   getTallas() {
-    return this.http.get('http://localhost:1337/Tallas')
+    return this.http.get('https://api-trespass.herokuapp.com/tallas')
   }
 }
