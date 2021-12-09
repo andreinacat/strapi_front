@@ -77,7 +77,7 @@ export class ActualizarChaquetaPage implements OnInit {
         const datos = new FormData()
         datos.append('files', this.archivo)
         datos.append('ref', 'Producto')
-        datos.append('refId', valor)
+        datos.append('refId', this.producto.id)
         datos.append('field', 'imagenURL')
 
         // Definimos la ruta de STRAPI donde se cargarán las imagenes
