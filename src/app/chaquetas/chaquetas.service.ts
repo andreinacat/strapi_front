@@ -33,7 +33,8 @@ export class ChaquetasService {
       "nombre": nombre,
       "talla": talla,
       "precio": precio,
-      "descripcion": descripcion
+      "descripcion": descripcion,
+      "Importado": importado
 
     }
     return this.http.post('https://api-trespass.herokuapp.com/Productos/', datos);

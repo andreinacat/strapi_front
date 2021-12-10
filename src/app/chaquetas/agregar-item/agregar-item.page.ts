@@ -53,6 +53,8 @@ export class AgregarItemPage implements OnInit {
   agregarChaqueta(nombre, talla, precio, descripcion, importado) {
     const STRAPI_BASE_URL = 'https://api-trespass.herokuapp.com'
     //const axios = require('axios')
+    const importa = importado.checked
+    console.log(" importado?", importa)
     const config = {
       onUploadProgress: function (progressEvent) {
         var porcentaje = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -61,7 +63,7 @@ export class AgregarItemPage implements OnInit {
       }
     }
 
-    this.chaquetaService.addChaquetas(nombre.value, talla.value, precio.value, descripcion.value, importado.value).subscribe(
+    this.chaquetaService.addChaquetas(nombre.value, talla.value, precio.value, descripcion.value, importa).subscribe(
       (respuesta) => {
         console.log(respuesta)
         this.pprod1 = respuesta
